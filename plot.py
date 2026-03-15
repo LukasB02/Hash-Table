@@ -10,6 +10,8 @@ def plot(prices):
 
     print("Highest Price: ", high, "Lowest Price: ", low)
 
+    print(high,end = "")
+
     for i in range(10):
         level = high - (row * i)
 
@@ -20,9 +22,17 @@ def plot(prices):
         else:
             print("       |", end="")
 
-        for p in prices:
-            if level <= p < level + row:
-                print("*", end="")
+        for j in range(len(prices) - 1):
+            today = prices[j]
+            tomorrow = prices[j + 1]
+
+            if level <= today < level + row:
+                if tomorrow > today:
+                    print("/", end="")
+                elif tomorrow < today:
+                    print("\\", end="")
+                else:
+                    print("_", end="")
             else:
                 print(" ", end="")
         print()
