@@ -2,6 +2,8 @@ import csv
 from price import price
 from stock import Stock
 
+from datetime import datetime
+
 
 
 def read_csv(filepath, name):
@@ -25,5 +27,9 @@ def read_csv(filepath, name):
 
             stock.add_price(price_data) #add the price data to the stock object
 
+    stock.prices.sort(key=lambda p: datetime.strptime(p['date'], '%m/%d/%Y') )
+
+    if len(stock.prices) > 30: #if there are more than 30 price entries only keep the most recent 30
+        stock.prices = stock.prices[-30:]
 
     return stock
