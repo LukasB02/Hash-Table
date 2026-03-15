@@ -9,6 +9,8 @@ def plot(prices):
 
     print("Highest Price: ", high, "Lowest Price: ", low)
 
+    print(f"{high: 6.2f} |", end="")
+
     for i in range(10):
         level = high - (row * i)
 
