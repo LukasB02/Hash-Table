@@ -1,6 +1,7 @@
 import hashtable
 import stock
 import plot
+from csv_import import read_csv
 
 table = [None] * 2003
 
@@ -14,14 +15,18 @@ while True:
         wkn = input("Aktienwkn: ")
         symbol = input("Aktiensymbol: ")
 
-        hashtable.add(table, stock.Stock(name, wkn, symbol))
+        hashtable.add(table, stock.stock(name, wkn, symbol))
         print("Aktie wurde hinzugefügt.")
 
     elif userInput == "DEL":
         print("DEL")
 
     elif userInput == "IMPORT":
-        print("IMPORT")
+        filepath = input("Aktienfilepath: ")
+        name = input("Aktienname: ")
+
+        if hashtable.search(table, name):
+            table[hashtable.getindex(table, name)] = read_csv(filepath, name)
 
     elif userInput == "SEARCH":
         nameORsymbol = input("Aktienname/Aktiensymbol: ")

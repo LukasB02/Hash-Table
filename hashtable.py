@@ -13,6 +13,17 @@ def add(table, stock):
             table[index] = stock
             return
 
+def getindex(table, stock):
+    h = hash(stock)
+
+    for i in range(2003):
+        index = (h + i * i) % 2003
+        if table[index] is not None:
+            if table[index]["name"] == stock:
+                return index
+    return None
+
+
 def delete(table, stock):
     h = hash(stock["name"])
 
