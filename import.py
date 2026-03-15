@@ -1,5 +1,5 @@
 import csv
-from price import price
+from price import Price
 from stock import Stock
 
 from datetime import datetime
@@ -23,7 +23,7 @@ def read_csv(filepath, name):
             high = float(row[4].replace('$', ''))
             low = float(row[5].replace('$', ''))
 
-            price_data = price(date, close, volume, open_, high, low) #create a price data dictionary
+            price_data = Price(date, close, volume, open_, high, low) #create a price data dictionary
 
             stock.add_price(price_data) #add the price data to the stock object
 

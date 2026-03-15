@@ -1,4 +1,4 @@
-def price(date, close, volume, open_, high, low):
+def Price(date, close, volume, open_, high, low):
     return {
         "date": date,
         "close": close,
