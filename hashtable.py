@@ -16,6 +16,14 @@ def add(table, stock):
 def delete(table, stock):
     h = hash(stock["name"])
 
+    for i in range(2003):
+        index = (h + i*i) % 2003
+        if table[index] is None:
+            return  "stock not found"
+        if table[index]["name"] == stock["name"]:
+            table[index] = None
+            return
+
 def search(table, stock):
     h = hash(stock)
 
