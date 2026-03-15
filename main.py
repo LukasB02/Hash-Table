@@ -1,6 +1,7 @@
 import hashtable
 import stock
 import plot
+import loadsave
 from csv_import import read_csv
 
 table = [None] * 2003
@@ -37,10 +38,14 @@ while True:
             hashtable.printnewest(table, nameORsymbol)
 
     elif userInput == "LOAD":
-        print("LOAD")
+        filename = input("Dateiname: ")
+        table = loadsave.load_stocks(filename)
+        print("Hashtabelle wurde erfolgreich geladen")
 
     elif userInput == "SAVE":
-        print("SAVE")
+        filename = input("Dateiname: ")
+        loadsave.save_stocks(table, filename)
+        print("Hashtabelle wurde erfolgreich gespeichert")
 
     elif userInput == "PLOT":
         name = input("Aktienname: ")
