@@ -31,9 +31,9 @@ def search(table, stock):
         index = (h + i*i) % 2003
         if table[index] is not None:
             if table[index]["name"] == stock or table[index]["symbol"] == stock:
-                return "found"
+                return True
     for entry in table:
         if entry is not None and entry["symbol"] == stock:
-            return "found"
+            return True
 
-    return "not found"
+    return False
