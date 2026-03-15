@@ -40,12 +40,10 @@ while True:
     elif userInput == "LOAD":
         filename = input("Dateiname: ")
         table = loadsave.load_stocks(filename)
-        print("Hashtabelle wurde erfolgreich geladen")
 
     elif userInput == "SAVE":
         filename = input("Dateiname: ")
         loadsave.save_stocks(table, filename)
-        print("Hashtabelle wurde erfolgreich gespeichert")
 
     elif userInput == "PLOT":
         name = input("Aktienname: ")

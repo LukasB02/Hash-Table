@@ -23,12 +23,20 @@ def save_stocks(table, filename):
     #write the stocks into a json file in the data directory
     with open(filepath, 'w') as jsonfile:
         json.dump(stocks, jsonfile, indent=2)
+    
+    print("Hashtabelle wurde erfolgreich gespeichert")
 
 
 def load_stocks(filename):
 
-    #open json file and save the stocks into a list
     filepath = DATA_DIR + filename
+    
+    #check if file exists
+    if not os.path.exists(filepath):
+        print(f"Fehler: Datei '{filename}' nicht gefunden!")
+        return None
+    
+    #open json file and save the stocks into a list
     with open(filepath, 'r') as jsonfile:
         stocks = json.load(jsonfile)
 
@@ -39,4 +47,5 @@ def load_stocks(filename):
     for stock in stocks:
         hashtable.add(table, stock)
 
+    print("Hashtabelle wurde erfolgreich geladen")
     return table
