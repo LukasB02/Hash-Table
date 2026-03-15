@@ -41,10 +41,22 @@ def search(table, stock):
     for i in range(2003):
         index = (h + i*i) % 2003
         if table[index] is not None:
-            if table[index]["name"] == stock or table[index]["symbol"] == stock:
+            if table[index]["name"] == stock:
                 return True
     for entry in table:
         if entry is not None and entry["symbol"] == stock:
             return True
 
     return False
+
+def printnewest(table, stock):
+    prices = table[getindex(table, stock)]["prices"]
+
+    newest = prices[-1]
+
+    print(f"Date:   {newest['date']}")
+    print(f"Close:  {newest['close']}")
+    print(f"Volume: {newest['volume']}")
+    print(f"Open:   {newest['open']}")
+    print(f"High:   {newest['high']}")
+    print(f"Low:    {newest['low']}")

@@ -24,8 +24,8 @@ while True:
         hashtable.delete(table, name)
 
     elif userInput == "IMPORT":
-        filepath = input("Aktienfilepath: ")
         name = input("Aktienname: ")
+        filepath = input("Aktienfilepath: ")
 
         if hashtable.search(table, name):
             table[hashtable.getindex(table, name)] = read_csv(filepath, name)
@@ -33,7 +33,9 @@ while True:
     elif userInput == "SEARCH":
         nameORsymbol = input("Aktienname/Aktiensymbol: ")
 
-        print(hashtable.search(table, nameORsymbol))
+        if hashtable.search(table, nameORsymbol):
+            hashtable.printnewest(table, nameORsymbol)
+
     elif userInput == "LOAD":
         print("LOAD")
 
