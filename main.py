@@ -1,5 +1,4 @@
 import hashtable
-import price
 import stock
 import plot
 
@@ -13,7 +12,7 @@ while True:
         wkn = input("Aktienwkn: ")
         symbol = input("Aktiensymbol: ")
 
-        hashtable.add(table, stock.stock(name, wkn, symbol))
+        hashtable.add(table, stock.Stock(name, wkn, symbol))
     elif userInput == "DEL":
         print("DEL")
     elif userInput == "IMPORT":

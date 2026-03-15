@@ -19,11 +19,11 @@ def read_csv(filepath, name):
             date = row[0]
             close = float(row[1].replace('$', '')) #remove the $ sign so convert to float works
             volume = int(row[2])
-            open_ = float(row[3].replace('$', ''))
+            open = float(row[3].replace('$', ''))
             high = float(row[4].replace('$', ''))
             low = float(row[5].replace('$', ''))
 
-            price_data = Price(date, close, volume, open_, high, low) #create a price data dictionary
+            price_data = Price(date, close, volume, open, high, low) #create a price data dictionary
 
             stock.add_price(price_data) #add the price data to the stock object
 
