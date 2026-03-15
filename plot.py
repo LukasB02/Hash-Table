@@ -1,6 +1,7 @@
 import price
 
 def plot(prices):
+    prices = [p["close"] for p in prices[-30:]]
 
     low = min(prices)
     high = max(prices)

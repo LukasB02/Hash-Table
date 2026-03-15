@@ -4,8 +4,10 @@ import plot
 
 table = [None] * 2003
 
+print("COMMANDS: ADD/DEL/IMPORT/SEARCH/LOAD/SAVE/PLOT/QUIT")
+
 while True:
-    userInput = input()
+    userInput = input("Eingabe: ")
 
     if userInput == "ADD":
         name = input("Aktienname: ")
@@ -13,24 +15,34 @@ while True:
         symbol = input("Aktiensymbol: ")
 
         hashtable.add(table, stock.Stock(name, wkn, symbol))
+        print("Aktie wurde hinzugefügt.")
+
     elif userInput == "DEL":
         print("DEL")
+
     elif userInput == "IMPORT":
         print("IMPORT")
+
     elif userInput == "SEARCH":
         nameORsymbol = input("Aktienname/Aktiensymbol: ")
 
         print(hashtable.search(table, nameORsymbol))
     elif userInput == "LOAD":
         print("LOAD")
+
     elif userInput == "SAVE":
         print("SAVE")
+
     elif userInput == "PLOT":
-        plot.plot(table)
-    elif userInput == "TEST":
-        print(hash)
+        nameORsymbol = input("Aktienname/Aktiensymbol: ")
+        for entry in table:
+            if entry is not None and (entry["name"] == nameORsymbol or entry["symbol"] == nameORsymbol):
+                plot.plot(entry["prices"])
+                break
+
     elif userInput == "QUIT":
         break
+
 
 
 

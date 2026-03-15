@@ -1,6 +1,6 @@
 import csv
 from price import price
-from stock import Stock
+from stock import stock
 
 from datetime import datetime
 
@@ -8,7 +8,7 @@ from datetime import datetime
 
 def read_csv(filepath, name):
 
-    stock = Stock(name = name, wkn="", symbol="") #create a new stock object with the given name
+    Stock = stock(name = name, wkn="", symbol="") #create a new stock object with the given name
 
     with open(filepath, 'r') as file:
         reader = csv.reader(file)
@@ -25,11 +25,11 @@ def read_csv(filepath, name):
 
             price_data = price(date, close, volume, open, high, low) #create a price data dictionary
 
-            stock["prices"].append(price_data) #add the price data to the stock object
+            Stock["prices"].append(price_data) #add the price data to the stock object
 
-    stock["prices"].sort(key=lambda p: datetime.strptime(p['date'], '%m/%d/%Y') )
+    Stock["prices"].sort(key=lambda p: datetime.strptime(p['date'], '%m/%d/%Y') )
 
-    if len(stock["prices"]) > 30: #if there are more than 30 price entries only keep the most recent 30
-        stock["prices"] = stock["prices"][-30:]
+    if len(Stock["prices"]) > 30: #if there are more than 30 price entries only keep the most recent 30
+        Stock["prices"] = Stock["prices"][-30:]
 
-    return stock
+    return Stock

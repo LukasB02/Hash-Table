@@ -1,4 +1,4 @@
-def Stock(name, wkn, symbol):
+def stock(name, wkn, symbol):
     return {
         "name": name,
         "wkn": wkn,
