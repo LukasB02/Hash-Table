@@ -16,10 +16,12 @@ while True:
         symbol = input("Aktiensymbol: ")
 
         hashtable.add(table, stock.stock(name, wkn, symbol))
-        print("Aktie wurde hinzugefügt.")
+        print("Aktie wurde hinzugefügt")
 
     elif userInput == "DEL":
-        print("DEL")
+        name = input("Aktienname: ")
+
+        hashtable.delete(table, name)
 
     elif userInput == "IMPORT":
         filepath = input("Aktienfilepath: ")
@@ -39,11 +41,9 @@ while True:
         print("SAVE")
 
     elif userInput == "PLOT":
-        nameORsymbol = input("Aktienname/Aktiensymbol: ")
-        for entry in table:
-            if entry is not None and (entry["name"] == nameORsymbol or entry["symbol"] == nameORsymbol):
-                plot.plot(entry["prices"])
-                break
+        name = input("Aktienname: ")
+        if hashtable.search(table, name):
+            plot.plot(table[hashtable.getindex(table, name)]["prices"])
 
     elif userInput == "QUIT":
         break

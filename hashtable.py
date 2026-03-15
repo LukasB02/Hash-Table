@@ -23,17 +23,17 @@ def getindex(table, stock):
                 return index
     return None
 
-
 def delete(table, stock):
-    h = hash(stock["name"])
+    h = hash(stock)
 
     for i in range(2003):
         index = (h + i*i) % 2003
         if table[index] is None:
-            return  "stock not found"
-        if table[index]["name"] == stock["name"]:
+            return None
+        if table[index]["name"] == stock:
             table[index] = None
-            return
+            return None
+    return None
 
 def search(table, stock):
     h = hash(stock)
