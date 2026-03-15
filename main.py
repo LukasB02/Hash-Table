@@ -1,25 +1,36 @@
 import hashtable
+import price
+import stock
+import plot
 
-hash = hashtable.hash("Apple")
+table = [None] * 2003
 
 while True:
     userInput = input()
 
-    if(userInput == "ADD"):
-        print("ADD")
-    elif(userInput == "DEL"):
+    if userInput == "ADD":
+        name = input("Aktienname: ")
+        wkn = input("Aktienwkn: ")
+        symbol = input("Aktiensymbol: ")
+
+        hashtable.add(table, stock.stock(name, wkn, symbol))
+    elif userInput == "DEL":
         print("DEL")
-    elif(userInput == "IMPORT"):
+    elif userInput == "IMPORT":
         print("IMPORT")
-    elif(userInput == "SEARCH"):
-        print("SEARCH")
-    elif(userInput == "LOAD"):
+    elif userInput == "SEARCH":
+        nameORsymbol = input("Aktienname/Aktiensymbol: ")
+
+        print(hashtable.search(table, nameORsymbol))
+    elif userInput == "LOAD":
         print("LOAD")
-    elif(userInput == "SAVE"):
+    elif userInput == "SAVE":
         print("SAVE")
-    elif(userInput == "TEST"):
+    elif userInput == "PLOT":
+        plot.plot(table)
+    elif userInput == "TEST":
         print(hash)
-    elif(userInput == "QUIT"):
+    elif userInput == "QUIT":
         break
 
 
