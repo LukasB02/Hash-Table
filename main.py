@@ -22,20 +22,28 @@ while True:
     elif userInput == "DEL":
         name = input("Aktienname: ")
 
-        hashtable.delete(table, name)
+        if hashtable.search(table, name):
+            hashtable.delete(table, name)
+            print("Aktie wurde gelöscht")
+        else:
+            print("Aktie wurde nicht gefunden")
 
     elif userInput == "IMPORT":
         name = input("Aktienname: ")
-        filepath = input("Aktienfilepath: ")
 
         if hashtable.search(table, name):
+            filepath = input("Aktienfilepath: ")
             table[hashtable.getindex(table, name)] = read_csv(filepath, name)
+        else:
+            print("Aktie wurde nicht gefunden")
 
     elif userInput == "SEARCH":
         nameORsymbol = input("Aktienname/Aktiensymbol: ")
 
         if hashtable.search(table, nameORsymbol):
             hashtable.printnewest(table, nameORsymbol)
+        else:
+            print("Aktie wurde nicht gefunden")
 
     elif userInput == "LOAD":
         filename = input("Dateiname: ")
@@ -47,8 +55,11 @@ while True:
 
     elif userInput == "PLOT":
         name = input("Aktienname: ")
+
         if hashtable.search(table, name):
             plot.plot(table[hashtable.getindex(table, name)]["prices"])
+        else:
+            print("Aktie wurde nicht gefunden")
 
     elif userInput == "QUIT":
         break
