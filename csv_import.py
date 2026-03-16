@@ -1,12 +1,15 @@
 import csv
+import os
 from price import price
 from stock import stock
 
 from datetime import datetime
 
-
-
 def read_csv(filepath, name):
+
+    if not os.path.exists(filepath):
+        print("Die Datei wurde nicht gefunden")
+        return
 
     Stock = stock(name = name, wkn="", symbol="") #create a new stock object with the given name
 

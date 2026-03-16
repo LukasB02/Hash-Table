@@ -16,8 +16,11 @@ while True:
         wkn = input("Aktienwkn: ")
         symbol = input("Aktiensymbol: ")
 
-        hashtable.add(table, stock.stock(name, wkn, symbol))
-        print("Aktie wurde hinzugefügt")
+        if not hashtable.search(table, name):
+            hashtable.add(table, stock.stock(name, wkn, symbol))
+            print("Aktie wurde hinzugefügt")
+        else:
+            print("Aktie existiert schon")
 
     elif userInput == "DEL":
         name = input("Aktienname: ")
