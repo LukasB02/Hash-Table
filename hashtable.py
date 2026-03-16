@@ -5,12 +5,13 @@ def hash(key):  #hashes a string into an index
     return h
 
 def add(table, stock):  #creates a new stock dictionary
-    if not search(table, stock["name"]):  # Checks if the stock already exists
-        print("Aktie wurde hinzugefügt")
-        table[hash(stock["name"])] = stock  #Adds the stock at the right index
-    else:
-        print("Aktie existiert schon")
-        return
+    h = hash(stock["name"])
+    for i in range(2003):   #goes through all indexes
+        index = (h + i * i) % 2003  #quadratic probing
+        if table[index] is None:
+            table[index] = stock    #adds the stock if an index is found
+            print("Aktie wurde hinzugefügt")
+            return
 
 def getindex(table, stockname): #returns the index of a stock
     h = hash(stockname)
