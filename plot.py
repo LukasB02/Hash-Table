@@ -10,14 +10,7 @@ def plot(prices):
 
     for i in range(10):
         level = high - (row * i)
-        if i==0:
-            print(f"{high:6.2f} |", end="")
-        elif i == 5:
-            print(f"{middle:6.2f} |", end="")
-        elif i == 9:
-            print(f"{low:6.2f} |", end="")
-        else:
-            print("           |", end="")
+        print("           |", end="")
 
         for p in prices:
             if level <= p < level + row:
@@ -25,3 +18,5 @@ def plot(prices):
             else:
                 print(" ", end="")
         print()
+
+
