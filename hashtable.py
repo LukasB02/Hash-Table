@@ -1,56 +1,59 @@
-def hash(key):
+def hash(key):  #hashes a string into an index
     h = 0
     for char in key:
-        h = (h * 31 + ord(char)) % 2003
+        h = (h * 31 + ord(char)) % 2003 #hashfunction with table size 2003
     return h
 
-def add(table, stock):
+def add(table, stock):  #creates a new stock dictionary
     h = hash(stock["name"])
 
-    for i in range(2003):
-        index = (h + i*i) % 2003
-        if table[index] is None:
-            table[index] = stock
-            return
+    if not search(table, stock):  # Checks if the stock already exists
+        print("Aktie wurde hinzugefügt")
+        table[getindex(table, stock)] = stock
+    else:
+        print("Aktie existiert schon")
+        return
 
-def getindex(table, stock):
+def getindex(table, stock): #returns the index of a stock
     h = hash(stock)
 
-    for i in range(2003):
-        index = (h + i * i) % 2003
+    for i in range(2003):   #goes through all indexes
+        index = (h + i * i) % 2003  #quadratic probing
         if table[index] is not None:
             if table[index]["name"] == stock:
                 return index
     return None
 
-def delete(table, stock):
+def delete(table, stock):   #delets a stock
     h = hash(stock)
 
-    for i in range(2003):
-        index = (h + i*i) % 2003
-        if table[index] is None:
-            return None
-        if table[index]["name"] == stock:
-            table[index] = None
-            return None
-    return None
+    if search(table, stock):  # Checks if the stock exists
+        print("Aktie wurde gelöscht")
+        table[getindex(table, stock)] = None
+    else:
+        print("Aktie wurde nicht gefunden")
+        return
 
-def search(table, stock):
+def search(table, stock):   #outputs TRUE if the stock exists
     h = hash(stock)
 
-    for i in range(2003):
-        index = (h + i*i) % 2003
+    for i in range(2003):   #goes through all indexes
+        index = (h + i*i) % 2003    #quadratic probing
         if table[index] is not None:
             if table[index]["name"] == stock:
                 return True
-    for entry in table:
+    for entry in table: #incase no name was found, go through all entries and search for the symbol
         if entry is not None and entry["symbol"] == stock:
             return True
 
     return False
 
-def printnewest(table, stock):
-    prices = table[getindex(table, stock)]["prices"]
+def printnewest(table, stock):  #prints the newest stock prices
+    if not search(table, stock):  # Checks if the stock exists
+        print("Aktie wurde nicht gefunden")
+        return
+
+    prices = table[getindex(table, stock)]["prices"]    #gets all prices stored from a specific stock
 
     newest = prices[-1]
 

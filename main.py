@@ -8,33 +8,24 @@ table = [None] * 2003
 
 print("COMMANDS: ADD/DEL/IMPORT/SEARCH/LOAD/SAVE/PLOT/QUIT")
 
-while True:
-    userInput = input("Eingabe: ")
+while True: #Ends when the user inputs QUIT
+    userInput = input("Eingabe: ")  #User Input
 
     if userInput == "ADD":
         name = input("Aktienname: ")
         wkn = input("Aktienwkn: ")
         symbol = input("Aktiensymbol: ")
 
-        if not hashtable.search(table, name):
-            hashtable.add(table, stock.stock(name, wkn, symbol))
-            print("Aktie wurde hinzugefügt")
-        else:
-            print("Aktie existiert schon")
+        hashtable.add(table, stock.stock(name, wkn, symbol))
 
     elif userInput == "DEL":
         name = input("Aktienname: ")
-
-        if hashtable.search(table, name):
-            hashtable.delete(table, name)
-            print("Aktie wurde gelöscht")
-        else:
-            print("Aktie wurde nicht gefunden")
+        hashtable.delete(table, name)
 
     elif userInput == "IMPORT":
         name = input("Aktienname: ")
 
-        if hashtable.search(table, name):
+        if hashtable.search(table, name):   #Checks if the stock exists
             filepath = input("Aktienfilepath: ")
             table[hashtable.getindex(table, name)] = read_csv(filepath, name)
         else:
@@ -42,11 +33,7 @@ while True:
 
     elif userInput == "SEARCH":
         nameORsymbol = input("Aktienname/Aktiensymbol: ")
-
-        if hashtable.search(table, nameORsymbol):
-            hashtable.printnewest(table, nameORsymbol)
-        else:
-            print("Aktie wurde nicht gefunden")
+        hashtable.printnewest(table, nameORsymbol)
 
     elif userInput == "LOAD":
         filename = input("Dateiname: ")
@@ -59,7 +46,7 @@ while True:
     elif userInput == "PLOT":
         name = input("Aktienname: ")
 
-        if hashtable.search(table, name):
+        if hashtable.search(table, name):   #Checks if the stock exists
             plot.plot(table[hashtable.getindex(table, name)]["prices"])
         else:
             print("Aktie wurde nicht gefunden")
